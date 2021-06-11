@@ -41,7 +41,7 @@ public class MovieController {
 	
 	//GET SINGLE METHOD
 	@GetMapping("/getOne/{index}")
-	public ResponseEntity<Movie> getMovie(@PathVariable int index) {
+	public ResponseEntity<Movie> getMovie(@PathVariable Long index) {
 		return ResponseEntity.ok(this.service.getMovie(index));
 	}
 	
@@ -53,14 +53,14 @@ public class MovieController {
 	
 	//DELETE METHOD
 	@DeleteMapping("/remove/{index}")
-	public ResponseEntity<Movie> removeMovie(@PathVariable int index) {
+	public ResponseEntity<Movie> removeMovie(@PathVariable Long index) {
 		return this.service.removeMovie(index) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) :
 			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	//UPDATE METHOD
 	@PutMapping("/replace/{index}")
-	public ResponseEntity<Movie> updateVehicle(@PathVariable int index, @RequestBody Movie newMovie){
+	public ResponseEntity<Movie> updateVehicle(@PathVariable Long index, @RequestBody Movie newMovie){
 		this.service.updateMovie(index, newMovie);
 		return new ResponseEntity<Movie>(newMovie, HttpStatus.ACCEPTED);
 	}
